@@ -1,0 +1,59 @@
+<ui:composition 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="resources/templates/common.xhtml">
+    <ui:define name="content">
+        <center>
+            <h1> Absence Approval </h1>
+        </center>
+        <h:form>
+            <center>
+                <div class="form-group">
+                    <div class="col-4">
+                        <label for="name">Full Name</label>
+                        <h:outputText class="form-control" id="name" pt:type="text" pt:placeholder="Name" value="#{absenceRequestManager.selectedAbsence.employeeid.name}"/>
+                        <label for="sdate">Start Date</label>
+                        <h:outputText class="form-control" id="sdate" pt:type="text" pt:placeholder="Start Date" value="#{absenceRequestManager.selectedAbsence.startdate}"/>
+                        <label for="edate">End Date</label>
+                        <h:outputText class="form-control" id="edate" pt:type="text" pt:placeholder="End Date" value="#{absenceRequestManager.selectedAbsence.enddate}"/>
+                        <label for="reason">Reason</label>
+                        <h:outputText class="form-control" id="reason" pt:type="text" pt:placeholder="Reason" value="#{absenceRequestManager.selectedAbsence.reasonid.name}"/>
+                    </div>
+                </div>
+                <p>Number of absence days allowed: #{absenceRequestManager.selectedAbsence.employeeid.daysallowed}</p>                
+                <p>Number of absence days already taken: #{absenceRequestManager.absenceHad}</p>
+                <p>Number of days remaining: #{absenceRequestManager.selectedAbsence.employeeid.daysallowed - absenceRequestManager.absenceHad}</p>
+                <p>Number of days requested: #{absenceRequestManager.selectedAbsence.numdays}</p>
+            </center>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-4 offset-sm-4">
+                    <p:commandLink rendered="#{absenceRequestManager.showCancelButton}"
+                                   styleClass="btn btn-warning float-left"
+                                   actionListener="#{absenceRequestManager.cancelClicked}"
+                                   action="dashboard.xhtml?faces-redirect=true">Cancel Request
+                    </p:commandLink>
+                    <p:commandLink rendered="#{absenceRequestManager.showApprovalButtons}"
+                                   styleClass="btn btn-success float-right"
+                                   actionListener="#{absenceRequestManager.approveClicked}"
+                                   action="dashboard.xhtml?faces-redirect=true">Approve
+                    </p:commandLink>
+                    <p:commandLink rendered="#{absenceRequestManager.showApprovalButtons}"
+                                   styleClass="btn btn-danger float-right"
+                                   style="margin-right: 5px"
+                                   actionListener="#{absenceRequestManager.denyClicked}"
+                                   action="dashboard.xhtml?faces-redirect=true">Deny
+                    </p:commandLink>
+                </div>
+            </div>
+            <center>
+                <p:commandLink styleClass="btn btn-primary"
+                               action="dashboard.xhtml?faces-redirect=true">Back to Dashboard
+                </p:commandLink>
+            </center>
+        </h:form>
+    </ui:define>
+</ui:composition>

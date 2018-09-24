@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<ui:composition 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="resources/templates/common.xhtml">
+    <f:metadata>
+        <f:viewAction action="#{absenceRequestManager.init}" />
+    </f:metadata>
+    <ui:define name="content">
+        <div class="text-center">
+            <h1>Absence request form </h1>
+            <center>
+                <h:form>
+                    <div class="container">
+                        <div class="col">
+                            <p:outputLabel for="popup" value="Start Date: "/>
+                            <p:calendar id="popup" value="#{absenceRequestManager.newAbsence.startdate}" pattern="dd/MM/yyyy" required="true"
+                                        requiredMessage="Please enter a valid start date."/>
+                        </div>
+                        <div class="col">
+                            <p:outputLabel for="time" value="End Date: "/>
+                            <p:calendar id="time" value="#{absenceRequestManager.newAbsence.enddate}" pattern="dd/MM/yyyy" required="true"
+                                        requiredMessage="Please enter a valid end date."/>
+                        </div>
+                        <div class="col">
+                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value">
+                                <p:outputLabel for="basic" value="Reason for absence:"/>
+                                <p:selectOneListbox id="basic" value="#{absenceRequestManager.newAbsence.reasonid}" converter="#{reasonConverter}" required="true" requiredMessage="Please choose a reason for your absence">
+                                    <f:selectItems value="#{absenceRequestManager.possibleReasons}" var="thisReason" itemLabel="#{thisReason.name}" itemValue="#{thisReason}"/>
+                                </p:selectOneListbox>
+                            </h:panelGrid>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-4">
+                                <label for="inputOther">Please give details:</label>
+                                <h:inputText styleClass="form-control" value="#{absenceRequestManager.newAbsence.reasonother}" id="inputOther"/>
+                            </div>
+                        </div>
+                        <p:messages autoUpdate="true"/>
+                        <p:commandLink styleClass="btn btn-primary"
+                                       action="dashboard.xhtml?faces-redirect=true"
+                                       actionListener="#{absenceRequestManager.submitClicked}" >Submit
+                        </p:commandLink>
+                    </div>
+                </h:form>
+            </center>
+        </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    </ui:define>
+</ui:composition>
