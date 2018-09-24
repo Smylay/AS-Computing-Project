@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<ui:composition 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="resources/templates/common.xhtml">
+    <ui:define name="content">
+        <div class="text-center">
+            <center>
+                <h:form>
+                    <p:outputPanel id="buttonPanel">
+                        <p:outputPanel rendered="#{!loginManager.loggedIn}">
+                            <h1>Log in</h1>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="exampleInputUsername">Username</label>
+                                    <h:inputText value="#{loginManager.username}"  styleClass="form-control" id="exampleInputUsername"  pt:aria-describedby="usernameHelp" pt:placeholder="Enter Username"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <h:inputSecret value="#{loginManager.password}" styleClass="form-control" id="exampleInputPassword1" pt:placeholder="Password"/>
+                                </div>
+                            </div>
+                            <p:messages showSummary="true" />
+                        </p:outputPanel>
+                        <p>
+                        <h:outputText rendered="#{loginManager.loggedIn}" value="Hello #{loginManager.loggedInUser.name}, you've successfully logged in to SearchpointHR!"/>
+                        </p>
+                        <p:commandLink rendered="#{!loginManager.loggedIn}" styleClass="btn btn-primary" actionListener="#{loginManager.loginClicked}" update="buttonPanel">Login</p:commandLink>
+                        <p:commandLink rendered="#{loginManager.loggedIn}" styleClass="btn btn-primary" actionListener="#{loginManager.logoutClicked}" action="log-in-screen.xhtml?faces-redirect=true">Logout</p:commandLink>
+                    </p:outputPanel>
+                </h:form>
+            </center>
+        </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    </ui:define>
+</ui:composition>

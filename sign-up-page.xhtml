@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<ui:composition 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="resources/templates/common.xhtml">
+    <ui:define name="content">
+        <div class="text-center">
+            <h1>Sign up </h1>
+            <center>
+                <h:form>
+                            <p:outputPanel id="primaryPanel">
+                        <p:outputPanel>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="fullName">Name</label>
+                                    <h:inputText value="#{signUpManager.newEmployee.name}" 
+                                                 required="true"
+                                                 requiredMessage="Please enter your full name"
+                                                 styleClass="form-control" id="fullName" pt:placeholder="Full Name"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="jobTitle">Job Title</label>
+                                    <h:inputText value="#{signUpManager.newEmployee.jobtitle}"
+                                                 required="true"
+                                                 requiredMessage="Please enter your job title"
+                                                 styleClass="form-control" id="jobTitle"  pt:placeholder="Job Description"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="inputTelephone">Telephone Number</label>
+                                    <h:inputText value="#{signUpManager.newEmployee.telephone}" 
+                                                 required="true"
+                                                 requiredMessage="Please enter your telephone number"
+                                                 styleClass="form-control" id="inputTelephone"  pt:placeholder="Enter telephone number"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="inputEmail1">Email address</label>
+                                    <h:inputText value="#{signUpManager.newEmployee.email}"
+                                                 required="true"
+                                                 requiredMessage="Please enter your email address"
+                                                 styleClass="form-control" id="inputEmail1"  pt:placeholder="Enter email"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="inputUsername">Choose Username</label>
+                                    <h:inputText value="#{signUpManager.newEmployee.username}"
+                                                 required="true"
+                                                 requiredMessage="Please enter a new username"
+                                                 styleClass="form-control" id="inputusername"  pt:placeholder="Enter new username"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="passwordInput">Choose Password</label>
+                                    <h:inputText value="#{signUpManager.password}" styleClass="form-control" id="passwordInput" pt:placeholder="Password" required="true"
+                                                 requiredMessage="Please enter a password"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-4">
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <h:inputText value="#{signUpManager.confirmPassword}" styleClass="form-control" id="confirmPassword" pt:placeholder="Confirm Password" required="true"
+                                                 requiredMessage="Please confirm your password"/>
+                                </div>
+                            </div>
+                        </p:outputPanel>
+                        <p:commandLink styleClass="btn btn-primary"  
+                                       actionListener="#{signUpManager.submitClicked}" 
+                                       update="primaryPanel" 
+                                       action="#{signUpManager.getNextPage}">Submit
+                        </p:commandLink>
+                        <p:messages showSummary="true" />
+
+                    </p:outputPanel>
+                </h:form>
+            </center>
+        </div>
+    </ui:define>
+</ui:composition>

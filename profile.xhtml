@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<ui:composition 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="resources/templates/common.xhtml">
+    <ui:define name="content">
+        <center>
+            <h1> Profile </h1>
+            <h:form>
+                <div class="form-group">
+                    <div class="col-4">
+                        <label for="name">Full Name</label>
+                        <h:outputText class="form-control" id="name" pt:type="text" pt:placeholder="Name" value="#{loginManager.loggedInUser.name}"/>
+                        <label for="job">Job Title</label>
+                        <h:outputText class="form-control" id="job" pt:type="text" pt:placeholder="Job Title" value="#{loginManager.loggedInUser.jobtitle}"/>
+                        <label for="phone">Phone Number</label>
+                        <h:outputText class="form-control" id="phone" pt:type="text" pt:placeholder="Telephone Number" value="#{loginManager.loggedInUser.telephone}"/>
+                        <label for="email">Email Address</label>
+                        <h:outputText class="form-control" id="email" pt:type="text" pt:placeholder="Email Address" value="#{loginManager.loggedInUser.email}"/>
+                        <label for="username">Username</label>
+                        <h:outputText class="form-control" id="username" pt:type="text" pt:placeholder="Username" value="#{loginManager.loggedInUser.username}"/>
+                        <label for="password">Password</label> 
+                        <h:outputText class="form-control" id="password" pt:type="secret" pt:placeholder="Password" value="#{loginManager.loggedInUser.password}"/>
+                        <label for="holidayRemaining">Holiday Allowance</label> 
+                        <h:outputText class="form-control" id="holidayRemaining" pt:type="text" pt:placeholder="Holiday Allowance" value="#{loginManager.loggedInUser.daysallowed}"/>
+                    </div>
+                </div>
+            </h:form>
+        </center>
+    </ui:define>
+</ui:composition>
